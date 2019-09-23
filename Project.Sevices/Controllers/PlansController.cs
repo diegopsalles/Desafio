@@ -13,6 +13,34 @@ namespace Project.Sevices.Controllers
     [Route("api/Plans")]
     public class PlansController : ControllerBase
     {
+        [HttpPost]
+        public IActionResult Post([FromBody] PlansCadastroViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok("Plano cadastrado com sucesso!");
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+
+        [HttpPut]
+        public IActionResult Put([FromBody] PlansEdicaoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok("Plano atualizado com sucesso!");
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+
         [HttpGet]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetById(int id, string ddd)
@@ -32,6 +60,12 @@ namespace Project.Sevices.Controllers
         public IActionResult GetBySku(string sku)
         {
             return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            return Ok("Cliente excluído com sucesso!");
         }
 
     }
