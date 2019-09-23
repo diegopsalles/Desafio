@@ -9,8 +9,9 @@ using Project.Sevices.Models;
 
 namespace Project.Sevices.Controllers
 {
+
     [Produces("application/json")]
-    [Route("api/Plans")]
+    [Route("api/plans")]
     public class PlansController : ControllerBase
     {
         [HttpPost]
@@ -27,7 +28,7 @@ namespace Project.Sevices.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult Put([FromBody] PlansEdicaoViewModel model)
         {
             if (ModelState.IsValid)
@@ -41,21 +42,21 @@ namespace Project.Sevices.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("{idplan}")]
         [Produces(typeof(PlansConsultaViewModel))]
-        public IActionResult GetById(int id, string ddd)
+        public IActionResult GetById(int idplan)
         {
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet("{mobileoperator}")]
         [Produces(typeof(PlansConsultaViewModel))]
-        public IActionResult GetByMobileOperator(string opertor)
+        public IActionResult GetByMobileOperator(string mobileoperator)
         {
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet("{sku}")]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetBySku(string sku)
         {
@@ -63,10 +64,14 @@ namespace Project.Sevices.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult Delete(int id)
         {
             return Ok("Cliente excluído com sucesso!");
         }
+
+
+
 
     }
 }
