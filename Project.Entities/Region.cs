@@ -7,7 +7,7 @@ namespace Project.Entities
     public class Region
     {
         public int IdRegioon { get; set; }
-        public string DDD { get; set; }
+        public int DDD { get; set; }
         public string State { get; set; }
     }
 }
