@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Project.Sevices.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Produces("application/json")]
+    [Route("api/Region")]
     public class RegionController : ControllerBase
     {
+
     }
 }
