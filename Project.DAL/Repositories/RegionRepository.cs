@@ -1,7 +1,10 @@
-﻿using Project.DAL.Contracts;
+﻿using Dapper;
+using Project.DAL.Contracts;
 using Project.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace Project.DAL.Repositories
@@ -18,32 +21,59 @@ namespace Project.DAL.Repositories
 
         public void Delete(int idRegion)
         {
-            throw new NotImplementedException();
+            var query = "delete from Region where IdRegion = @IdRegion";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Execute(query, new { IdRegion = idRegion });
+            }
         }
 
         public Region GetByDDD(string ddd)
         {
-            throw new NotImplementedException();
+            var query = "select * from Region where DDD = @DDD";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                return conn.QuerySingleOrDefault<Region>(query, new { DDD = ddd });
+            }
+
         }
 
         public Region GetById(int idRegion)
         {
-            throw new NotImplementedException();
+            var query = "select * from Region where IdRegion = @IdRegion";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                return conn.QuerySingleOrDefault<Region>(query, new { idRegion = idRegion });
+            }
         }
 
         public void Insert(Region region)
         {
-            throw new NotImplementedException();
+            var query = "insert into Region(IdRegion, DDD, State) values (@IdRegion, @DDD, @State)";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Execute(query, region);
+            }
         }
 
         public List<Region> ListAll()
         {
-            throw new NotImplementedException();
+            var query = "select * from Region";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                return conn.Query<Region>(query).ToList();
+            }
         }
 
         public void Update(Region region)
         {
-            throw new NotImplementedException();
+            var query = "update Plans set IdRegion = @IdRegion, DDD = @DDD, State = @State where IdRegion = @IdRegion";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Execute(query, region);
+            }
         }
     }
 }
