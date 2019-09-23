@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Project.Entities
 {
-    public class Plans
+    public class Plan
     {
-        public int IDPlan { get; set; }
+        public int IdPlan { get; set; }
         public string  SKU { get; set; }
         public string Name { get; set; }
         public int Minutes { get; set; }

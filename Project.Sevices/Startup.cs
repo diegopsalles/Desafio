@@ -28,17 +28,15 @@ namespace Project.Sevices
         {
             services.AddMvc();
 
-            services.AddSwaggerGen(
-                sw =>
-                {
-                    sw.SwaggerDoc("v1",
-                        new Info
-                        {
-                            Title = "Desafio Wooza",
-                            Description = "Projeto Asp.Net Core API",
-                            Version = "v1"
-                        });
-                });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Desafio Wooza", Version = "v1" });
+
+                c.IgnoreObsoleteActions();
+                c.IgnoreObsoleteProperties();
+                c.DocumentFilterDescriptors.AsReadOnly();
+                c.CustomSchemaIds(i => i.FullName);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,9 +50,12 @@ namespace Project.Sevices
             app.UseMvc();
 
             app.UseSwagger();
-            app.UseSwaggerUI(s =>
+            app.UseSwaggerUI(c =>
             {
-                s.SwaggerEndpoint("../swagger/v1/swagger.json", "Desafio");
+                c.SwaggerEndpoint("v1/swagger.json", "Desafio Wooza");
+                c.DefaultModelExpandDepth(0);
+                c.DefaultModelsExpandDepth(-1);
+
             });
         }
     }

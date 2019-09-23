@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Project.Sevices.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Region")]
-    public class RegionController : ControllerBase
+    [Route("api/regions")]
+    public class RegionsController : ControllerBase
     {
 
     }
