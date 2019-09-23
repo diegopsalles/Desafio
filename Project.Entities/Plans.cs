@@ -5,7 +5,7 @@ namespace Project.Entities
 {
     public class Plans
     {
-        public int IdPlan { get; set; }
+        public int IDPlan { get; set; }
         public string  SKU { get; set; }
         public string Name { get; set; }
         public int Minutes { get; set; }

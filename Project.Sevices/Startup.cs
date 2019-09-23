@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Project.Sevices
 {
@@ -25,7 +26,22 @@ namespace Project.Sevices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc();
+            services.AddSwaggerGen(
+            sw =>
+            {
+                sw.SwaggerDoc("v1",
+                    new Info
+                    {
+                        Title = "Desafio Wooza",
+                        Description = "Projeto Asp.Net Core API",
+                        Version = "v1",
+                        Contact = new Contact
+                        {
+                            Name = "Diego Salles",
+                        }
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,14 +50,13 @@ namespace Project.Sevices
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMvc();
+                app.UseSwagger();
+                app.UseSwaggerUI(s =>
+                {
+                    s.SwaggerEndpoint("/swagger/v1/swagger.json", "Projeto");
+                });
             }
-            else
-            {
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseMvc();
         }
     }
 }
