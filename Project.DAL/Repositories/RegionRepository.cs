@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Project.DAL.Repositories
 {
-    class RegionRepository : IRegionRepository
+    public class RegionRepository : IRegionRepository
 
     {
         private readonly string _connectionString;
