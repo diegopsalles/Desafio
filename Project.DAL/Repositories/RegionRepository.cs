@@ -1,11 +1,9 @@
 ﻿using Dapper;
 using Project.DAL.Contracts;
 using Project.Entities;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 
 namespace Project.DAL.Repositories
 {
@@ -28,14 +26,13 @@ namespace Project.DAL.Repositories
             }
         }
 
-        public Region GetByDDD(string ddd)
+        public Region GetByDDD(int ddd)
         {
             var query = "select * from Region where DDD = @DDD";
             using (var conn = new SqlConnection(_connectionString))
             {
                 return conn.QuerySingleOrDefault<Region>(query, new { DDD = ddd });
             }
-
         }
 
         public Region GetById(int idRegion)
