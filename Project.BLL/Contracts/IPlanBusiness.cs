@@ -14,6 +14,7 @@ namespace Project.BLL.Contracts
         List<Plan> ListAll();
         Plan GetByID(int IdPlan);
         Plan GetBySKU(string sku);
+        Plan GetByTypeOfPlan(string typeOfPlan);
         Plan GetByMobileOperator(string mobileOperator);
 
 
