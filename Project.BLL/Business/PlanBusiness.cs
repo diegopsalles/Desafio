@@ -15,39 +15,39 @@ namespace Project.BLL.Business
             repository = _repository;
         }
 
-        public void Atualizar(Plan plan)
+        public void Delete(int idPlan)
         {
-            _repository.Update(plan);
+            _repository.Delete(idPlan);
         }
 
-        public void Cadastrar(Plan plan)
+        public Plan GetByID(int IdPlan)
         {
-            _repository.Insert(plan);
+            return _repository.GetByID(IdPlan);
         }
 
-        public Plan ConsultarPorID(int IdPlan)
-        {
-            return _repository.GetById(int idPlan);
-        }
-
-        public Plan ConsultarPorMobileOperator(string mobileOperator)
+        public Plan GetByMobileOperator(string mobileOperator)
         {
             return _repository.GetByMobileOperator(mobileOperator);
         }
 
-        public Plan ConsultarPorSKU(int sku)
+        public Plan GetBySKU(string sku)
         {
-            return _repository.GetBySku(sku);
+            return _repository.GetBySKU(sku);
         }
 
-        public List<Plan> ConsultarTodos()
+        public void Insert(Plan plan)
+        {
+            _repository.Insert(plan);
+        }
+
+        public List<Plan> ListAll()
         {
             return _repository.ListAll();
         }
 
-        public void Excluir(int idPlan)
+        public void Update(Plan plan)
         {
-            _repository.Delete(int idPlan);
+            _repository.Update(plan);
         }
     }
 }

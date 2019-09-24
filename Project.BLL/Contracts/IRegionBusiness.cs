@@ -7,12 +7,12 @@ namespace Project.BLL.Contracts
 {
     public interface IRegionBusiness
     {
-        void Cadastrar(Region region);
-        void Atualizar(Region region);
-        void Excluir(int IdRegion);
+        void Insert(Region region);
+        void Update(Region region);
+        void Delete(int IdRegion);
 
-        List<Region> ConsultarTodos();
-        Region ConsultarPorID(int IdRegion);
-        Region ConsultarPorDDD(int DDD);
+        List<Region> ListAll();
+        Region GetByID(int IdRegion);
+        Region GetByDDD(int DDD);
     }
 }
