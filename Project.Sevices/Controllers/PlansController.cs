@@ -14,7 +14,7 @@ namespace Project.Sevices.Controllers
     {
         private readonly IPlanBusiness _business;
 
-        public PlansController( IPlanBusiness business)
+        public PlansController(IPlanBusiness business)
         {
             business = _business;
         }
@@ -31,7 +31,7 @@ namespace Project.Sevices.Controllers
 
                     return Ok("Plano cadastrado com sucesso!");
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     return StatusCode(500, e.Message);
                 }
@@ -79,7 +79,6 @@ namespace Project.Sevices.Controllers
             }
             catch (Exception e)
             {
-                //HTTP 500 -> Internal Server Error
                 return StatusCode(500, e.Message);
             }
         }
@@ -97,7 +96,6 @@ namespace Project.Sevices.Controllers
             }
             catch (Exception e)
             {
-                //HTTP 500 -> Internal Server Error
                 return StatusCode(500, e.Message);
             }
         }
@@ -115,7 +113,6 @@ namespace Project.Sevices.Controllers
             }
             catch (Exception e)
             {
-                //HTTP 500 -> Internal Server Error
                 return StatusCode(500, e.Message);
             }
         }
@@ -133,10 +130,8 @@ namespace Project.Sevices.Controllers
             }
             catch (Exception e)
             {
-                //HTTP 500 -> Internal Server Error
-                return StatusCode(500, e.Message);
+               return StatusCode(500, e.Message);
             }
-
         }
 
         [HttpDelete("{id}")]
@@ -144,7 +139,7 @@ namespace Project.Sevices.Controllers
         {
             try
             {
-                 _business.Delete(id);
+                _business.Delete(id);
 
                 return Ok("Plano excluído com sucesso!");
             }
@@ -154,4 +149,6 @@ namespace Project.Sevices.Controllers
 
             }
         }
+
+    }
 }
