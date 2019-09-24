@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Project.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
 using Project.Sevices.Models;
 
 namespace Project.Sevices.Controllers
@@ -27,7 +21,6 @@ namespace Project.Sevices.Controllers
             }
         }
 
-
         [HttpPut("{id}")]
         public IActionResult Put([FromBody] PlansEdicaoViewModel model)
         {
@@ -40,7 +33,6 @@ namespace Project.Sevices.Controllers
                 return BadRequest();
             }
         }
-
 
         [HttpGet("{idplan}")]
         [Produces(typeof(PlansConsultaViewModel))]
@@ -63,15 +55,17 @@ namespace Project.Sevices.Controllers
             return Ok();
         }
 
+        [HttpGet("{typeofplan}")]
+        [Produces(typeof(PlansConsultaViewModel))]
+        public IActionResult GetByTypeOfPlan(string typeOfPlan)
+        {
+            return Ok();
+        }
+
         [HttpDelete("{id}")]
-        [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult Delete(int id)
         {
             return Ok("Cliente excluído com sucesso!");
         }
-
-
-
-
     }
 }

@@ -41,7 +41,7 @@ namespace Project.DAL.Repositories
                 conn.Execute(query, new { IdPlan = idPlan });
             }
         }
-        public Plan GetById(int idPlan)
+        public Plan GetByID(int idPlan)
         {
             var query = "select * from Plans where IdPlan = @IdPlan";
             using (var conn = new SqlConnection(_connectionString))
@@ -59,7 +59,7 @@ namespace Project.DAL.Repositories
                 (query, new { MobileOperator = mobileOperator });
             }
         }
-        public Plan GetBySku(string sku)
+        public Plan GetBySKU(string sku)
         {
             var query = "select * from Plans where SKU = @SKU";
             using (var conn = new SqlConnection(_connectionString))
@@ -74,6 +74,15 @@ namespace Project.DAL.Repositories
             using (var conn = new SqlConnection(_connectionString))
             {
                 return conn.Query<Plan>(query).ToList();
+            }
+        }
+        public Plan GetByTypeOfPlan(string typeOfPlan)
+        {
+            var query = "select * from Plans where TypeOfPlan = @TypeOfPlan";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                return conn.QuerySingleOrDefault<Plan>
+                (query, new { TypeOfPlan = typeOfPlan });
             }
         }
     }
