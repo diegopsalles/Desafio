@@ -13,7 +13,7 @@ namespace Project.DAL.Contracts
 
         List<Region> ListAll();
         Region GetById(int idPlan);
-        Region GetByDDD(string sku);
+        Region GetByDDD(int ddd);
         
     }
 }
