@@ -35,6 +35,11 @@ namespace Project.BLL.Business
             return _repository.GetBySKU(sku);
         }
 
+        public Plan GetByTypeOfPlan(string typeOfPlan)
+        {
+            return _repository.GetByTypeOfPlan(typeOfPlan);
+        }
+
         public void Insert(Plan plan)
         {
             _repository.Insert(plan);
