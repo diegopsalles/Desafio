@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Project.DAL.Contracts
 {
-    interface IRegionRepository
+    public interface IRegionRepository
     {
-        void Insert(Region plan);
-        void Update(Region plan);
-        void Delete(int idPlan);
+        void Insert(Region region);
+        void Update(Region region);
+        void Delete(int idRegion);
 
         List<Region> ListAll();
-        Region GetById(int idPlan);
+        Region GetById(int idRegion);
         Region GetByDDD(int ddd);
         
     }

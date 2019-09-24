@@ -1,8 +1,7 @@
 ﻿using Project.BLL.Contracts;
-using Project.Entities;
-using System;
-using System.Collections.Generic;
 using Project.DAL.Contracts;
+using Project.Entities;
+using System.Collections.Generic;
 
 namespace Project.BLL.Business
 {
@@ -10,36 +9,36 @@ namespace Project.BLL.Business
     {
         private readonly IRegionRepository _repository;
 
-        public RegionBusiness (IRegionRepository repository)
+        public RegionBusiness(IRegionRepository repository)
         {
-            repository = _repository
+            repository = _repository;
         }
-        public void Atualizar(Region region)
+        public void Update(Region region)
         {
-            _repository.Atualizar(region);
-        }
-
-        public void Cadastrar(Region region)
-        {
-            _repository.Cadastrar(region);   
+            _repository.Update(region);
         }
 
-        public Region ConsultarPorDDD(int DDD)
+        public void Insert(Region region)
+        {
+            _repository.Insert(region);
+        }
+
+        public Region GetByDDD(int DDD)
         {
             return _repository.GetByDDD(DDD);
         }
 
-        public Region ConsultarPorID(int IdRegion)
+        public Region GetByID(int IdRegion)
         {
             return _repository.GetById(IdRegion);
         }
 
-        public List<Region> ConsultarTodos()
+        public List<Region> ListAll()
         {
             return _repository.ListAll();
         }
 
-        public void Excluir(int IdRegion)
+        public void Delete(int IdRegion)
         {
             _repository.Delete(IdRegion);
         }

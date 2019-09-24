@@ -7,14 +7,14 @@ namespace Project.BLL.Contracts
 {
     public interface IPlanBusiness
     {
-        void Cadastrar(Plan plan);
-        void Atualizar(Plan plan);
-        void Excluir(int idPlan);
+        void Insert(Plan plan);
+        void Update(Plan plan);
+        void Delete(int idPlan);
 
-        List<Plan> ConsultarTodos();
-        Plan ConsultarPorID(int IdPlan);
-        Plan ConsultarPorSKU(int sku);
-        Plan ConsultarPorMobileOperator(string mobileOperator);
+        List<Plan> ListAll();
+        Plan GetByID(int IdPlan);
+        Plan GetBySKU(string sku);
+        Plan GetByMobileOperator(string mobileOperator);
 
 
     }

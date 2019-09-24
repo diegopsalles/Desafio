@@ -10,8 +10,8 @@ namespace Project.DAL.Contracts
         void Delete(int idPlan);
 
         List<Plan> ListAll();
-        Plan GetById(int idPlan);
-        Plan GetBySku(string sku);
+        Plan GetByID(int idPlan);
+        Plan GetBySKU(string sku);
         Plan GetByMobileOperator(string mobileOperator);
     }
 }
