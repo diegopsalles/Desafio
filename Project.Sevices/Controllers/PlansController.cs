@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Project.BLL.Contracts;
+using Project.Entities;
 using Project.Sevices.Models;
+using System;
 
 namespace Project.Sevices.Controllers
 {
@@ -8,12 +12,29 @@ namespace Project.Sevices.Controllers
     [Route("api/plans")]
     public class PlansController : ControllerBase
     {
+        private readonly IPlanBusiness _business;
+
+        public PlansController( IPlanBusiness business)
+        {
+            business = _business;
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] PlansCadastroViewModel model)
         {
             if (ModelState.IsValid)
             {
-                return Ok("Plano cadastrado com sucesso!");
+                try
+                {
+                    var plan = Mapper.Map<Plan>(model);
+                    _business.Insert(plan);
+
+                    return Ok("Plano cadastrado com sucesso!");
+                }
+                catch(Exception e)
+                {
+                    return StatusCode(500, e.Message);
+                }
             }
             else
             {
@@ -26,7 +47,18 @@ namespace Project.Sevices.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Ok("Plano atualizado com sucesso!");
+                try
+                {
+                    var plan = Mapper.Map<Plan>(model);
+                    _business.Update(plan);
+
+                    return Ok("Plano atualizado com sucesso!");
+                }
+                catch (Exception e)
+                {
+                    return StatusCode(500, e.Message);
+
+                }
             }
             else
             {
@@ -38,34 +70,88 @@ namespace Project.Sevices.Controllers
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetById(int idplan)
         {
-            return Ok();
+            try
+            {
+                var planId = _business.GetByID(idplan);
+                var model = Mapper.Map<PlansConsultaViewModel>(planId);
+
+                return Ok(model);
+            }
+            catch (Exception e)
+            {
+                //HTTP 500 -> Internal Server Error
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpGet("{mobileoperator}")]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetByMobileOperator(string mobileoperator)
         {
-            return Ok();
+            try
+            {
+                var planMobileOperator = _business.GetByMobileOperator(mobileoperator);
+                var model = Mapper.Map<PlansConsultaViewModel>(planMobileOperator);
+
+                return Ok(model);
+            }
+            catch (Exception e)
+            {
+                //HTTP 500 -> Internal Server Error
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpGet("{sku}")]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetBySku(string sku)
         {
-            return Ok();
+            try
+            {
+                var planSku = _business.GetBySKU(sku);
+                var model = Mapper.Map<PlansConsultaViewModel>(planSku);
+
+                return Ok(model);
+            }
+            catch (Exception e)
+            {
+                //HTTP 500 -> Internal Server Error
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpGet("{typeofplan}")]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetByTypeOfPlan(string typeOfPlan)
         {
-            return Ok();
+            try
+            {
+                var planType = _business.GetByTypeOfPlan(typeOfPlan);
+                var model = Mapper.Map<PlansConsultaViewModel>(planType);
+
+                return Ok(model);
+            }
+            catch (Exception e)
+            {
+                //HTTP 500 -> Internal Server Error
+                return StatusCode(500, e.Message);
+            }
+
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok("Cliente excluído com sucesso!");
+            try
+            {
+                 _business.Delete(id);
+
+                return Ok("Plano excluído com sucesso!");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+
+            }
         }
-    }
 }
