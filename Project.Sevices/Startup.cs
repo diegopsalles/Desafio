@@ -10,6 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Project.BLL.Business;
+using Project.BLL.Contracts;
+using Project.DAL.Contracts;
+using Project.DAL.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Project.Sevices
@@ -26,6 +30,16 @@ namespace Project.Sevices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //capturar a string de conexão com o banco de dados
+            var connectionString = Configuration.GetConnectionString("Desafio");
+
+            //mapeamento da injeção de dependência
+            services.AddTransient<IPlanBusiness, PlanBusiness>();
+            services.AddTransient<IRegionBusiness, RegionBusiness>();
+            services.AddTransient<IPlanRepository, PlanRepository>(map => new PlanRepository(connectionString));
+            services.AddTransient<IRegionRepository, RegionRepository>(map => new RegionRepository(connectionString));
+
+
             services.AddMvc();
 
             services.AddSwaggerGen(c =>
