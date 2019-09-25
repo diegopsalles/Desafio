@@ -19,7 +19,7 @@ namespace Project.Sevices.Controllers
 
         public RegionsController(IRegionBusiness business)
         {
-            business = _business;
+            _business = business;
         }
 
         [HttpPost]

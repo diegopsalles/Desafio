@@ -17,7 +17,7 @@ namespace Project.DAL.Repositories
         }
         public void Insert(Plan plans)
         {
-            var query = "insert into Plans(IdPlan, SKU, Name, Minutes, InternetFranchise, PriceOfPlan, MobileOperator, Region) values (@IdPlan, @SKU, @Name, @Minutes, @InternetFranchise, @PriceOfPlan, @MobileOperator, @Region)";
+            var query = "insert into Plans(SKU, Name, Minutes, InternetFranchise, PriceOfPlan, TypeOfPlan, MobileOperator, Region) values (@SKU, @Name, @Minutes, @InternetFranchise, @PriceOfPlan, @TypeOfPlan, @MobileOperator, @Region)";
 
             using (var conn = new SqlConnection(_connectionString))
             {

@@ -16,7 +16,7 @@ namespace Project.Sevices.Controllers
 
         public PlansController(IPlanBusiness business)
         {
-            business = _business;
+            _business = business;
         }
 
         [HttpPost]
@@ -32,7 +32,7 @@ namespace Project.Sevices.Controllers
                     return Ok("Plano cadastrado com sucesso!");
                 }
                 catch (Exception e)
-                {
+                    {
                     return StatusCode(500, e.Message);
                 }
             }
