@@ -46,7 +46,7 @@ namespace Project.DAL.Repositories
 
         public void Insert(Region region)
         {
-            var query = "insert into Region(IdRegion, DDD, State) values (@IdRegion, @DDD, @State)";
+            var query = "insert into Region(DDD, State) values (@DDD, @State)";
 
             using (var conn = new SqlConnection(_connectionString))
             {
@@ -65,7 +65,7 @@ namespace Project.DAL.Repositories
 
         public void Update(Region region)
         {
-            var query = "update Plans set IdRegion = @IdRegion, DDD = @DDD, State = @State where IdRegion = @IdRegion";
+            var query = "update Region set DDD = @DDD, State = @State where IdRegion = @IdRegion";
 
             using (var conn = new SqlConnection(_connectionString))
             {

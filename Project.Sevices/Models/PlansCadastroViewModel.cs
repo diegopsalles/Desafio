@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,5 +23,7 @@ namespace Project.Sevices.Models
         public string TypeOfPlan { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public string MobileOperator { get; set; }
+
+        public List<Region> RegionsAssociadas { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Project.DAL.Contracts
         void Update(Plan plan);
         void Delete(int idPlan);
 
-        List<Plan> ListAll();
+        List<Plan> ListAll(string mobileOperator, string typeOfPlan);
         Plan GetByID(int idPlan);
         Plan GetBySKU(string sku);
         Plan GetByTypeOfPlan(string typeOfPlan);

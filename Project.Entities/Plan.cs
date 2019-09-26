@@ -5,6 +5,11 @@ namespace Project.Entities
 {
     public class Plan
     {
+        public Plan()
+        {
+            Regions = new List<PlanRegion>();
+        }
+
         public int IdPlan { get; set; }
         public string  SKU { get; set; }
         public string Name { get; set; }
@@ -13,6 +18,18 @@ namespace Project.Entities
         public decimal PriceOfPlan { get; set; }
         public string TypeOfPlan { get; set; }
         public string MobileOperator { get; set; }
-        public List<Region> Region { get; set; }
+        public List<PlanRegion> Regions { get; set; }
+
+        public virtual void AddRegion(Region region)
+        {
+            var planRegion = new PlanRegion
+            {
+                Plan = this,
+                Region = region
+            };
+            Regions.Add(planRegion);
+
+
+        }
     }
 }
