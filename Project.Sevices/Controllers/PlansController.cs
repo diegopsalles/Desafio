@@ -4,6 +4,8 @@ using Project.BLL.Contracts;
 using Project.Entities;
 using Project.Sevices.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Project.Sevices.Controllers
 {
@@ -27,6 +29,10 @@ namespace Project.Sevices.Controllers
                 try
                 {
                     var plan = Mapper.Map<Plan>(model);
+                    if (model.RegionsAssociadas != null && model.RegionsAssociadas.Count > 0)
+                    {
+                        model.RegionsAssociadas.ForEach(s => plan.AddRegion(s));
+                    }
                     _business.Insert(plan);
 
                     return Ok("Plano cadastrado com sucesso!");
@@ -83,7 +89,7 @@ namespace Project.Sevices.Controllers
             }
         }
 
-        [HttpGet("{mobileoperator}")]
+        [HttpGet("getby/{mobileoperator}")]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetByMobileOperator(string mobileoperator)
         {
@@ -100,7 +106,26 @@ namespace Project.Sevices.Controllers
             }
         }
 
-        [HttpGet("{sku}")]
+        [HttpGet("")]
+        [Produces(typeof(PlansConsultaViewModel))]
+        public IActionResult GetAlll([FromQuery] string mobileOperator, string typeOfPlan)
+        {
+            try
+            {
+                var listPlans = _business.ListAll(mobileOperator, typeOfPlan);
+                var returnListModel = Mapper.Map<List<PlansConsultaViewModel>>(listPlans);
+
+                return Ok(returnListModel);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+
+
+        [HttpGet("sku/{sku}")]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetBySku(string sku)
         {
@@ -117,7 +142,7 @@ namespace Project.Sevices.Controllers
             }
         }
 
-        [HttpGet("{typeofplan}")]
+        [HttpGet("typeofplan/{typeofplan}")]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetByTypeOfPlan(string typeOfPlan)
         {

@@ -11,7 +11,7 @@ namespace Project.BLL.Business
 
         public RegionBusiness(IRegionRepository repository)
         {
-            repository = _repository;
+            _repository = repository;
         }
         public void Update(Region region)
         {

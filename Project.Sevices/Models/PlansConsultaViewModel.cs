@@ -8,7 +8,7 @@ namespace Project.Sevices.Models
 {
     public class PlansConsultaViewModel
     {
-        public int IDPlan { get; set; }
+        public int IdPlan { get; set; }
         public string SKU { get; set; }
         public string Name { get; set; }
         public int Minutes { get; set; }
@@ -18,4 +18,5 @@ namespace Project.Sevices.Models
         public string MobileOperator { get; set; }
         public List<Region> Region { get; set; }
     }
+
 }

@@ -8,6 +8,9 @@ namespace Project.Sevices.Models
 {
     public class RegionsEdicaoViewModel
     {
+
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public int IdRegion { get; set; }
         [Required(ErrorMessage="Campo obrigatório")]
         public int DDD { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
