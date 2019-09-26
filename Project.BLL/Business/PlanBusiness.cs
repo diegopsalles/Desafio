@@ -12,7 +12,7 @@ namespace Project.BLL.Business
 
         public PlanBusiness(IPlanRepository repository)
         {
-            repository = _repository;
+            _repository = repository;
         }
 
         public void Delete(int idPlan)
@@ -45,9 +45,9 @@ namespace Project.BLL.Business
             _repository.Insert(plan);
         }
 
-        public List<Plan> ListAll()
+        public List<Plan> ListAll(string mobileOperator, string typeOfPlan)
         {
-            return _repository.ListAll();
+            return _repository.ListAll(mobileOperator, typeOfPlan);
         }
 
         public void Update(Plan plan)

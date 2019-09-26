@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Project.DAL.Contracts;
 using Project.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Project.DAL.Repositories
         }
         public void Insert(Plan plans)
         {
-            var query = "insert into Plans(IdPlan, SKU, Name, Minutes, InternetFranchise, PriceOfPlan, MobileOperator, Region) values (@IdPlan, @SKU, @Name, @Minutes, @InternetFranchise, @PriceOfPlan, @MobileOperator, @Region)";
+            var query = "insert into Plans(SKU, Name, Minutes, InternetFranchise, PriceOfPlan, TypeOfPlan, MobileOperator, Region) values (@SKU, @Name, @Minutes, @InternetFranchise, @PriceOfPlan, @TypeOfPlan, @MobileOperator, @Region)";
 
             using (var conn = new SqlConnection(_connectionString))
             {
@@ -26,7 +27,7 @@ namespace Project.DAL.Repositories
         }
         public void Update(Plan plans)
         {
-            var query = "update Plans set SKU = @SKU, Name = @Name, Minutes = @Minutes, InternetFranchise = @InternetFranchise, PriceOfPlan = @PriceOfPlan, MobileOperator = @MobileOperator, Region = @Region where IdPlan = @IdPlan";
+            var query = "update Plans set SKU = @SKU, Name = @Name, Minutes = @Minutes, InternetFranchise = @InternetFranchise, PriceOfPlan = @PriceOfPlan, TypeOfPlan = @TypeOfPlan, MobileOperator = @MobileOperator, Region = @Region where IdPlan = @IdPlan";
 
             using (var conn = new SqlConnection(_connectionString))
             {
@@ -68,12 +69,27 @@ namespace Project.DAL.Repositories
                 (query, new { SKU = sku });
             }
         }
-        public List<Plan> ListAll()
+        public List<Plan> ListAll(string mobileOperator, string typeOfPlan)
         {
             var query = "select * from Plans";
+            if (!string.IsNullOrEmpty(mobileOperator) && !string.IsNullOrEmpty(typeOfPlan))
+            {
+                query += " where MobileOperator = @MobileOperator" + mobileOperator +
+                    " and TypeOfPlan = @TypeOfPlan" + typeOfPlan;
+            }
+            else if (!string.IsNullOrEmpty(mobileOperator))
+            {
+                 query += " where MobileOperator = @MobileOperator" + mobileOperator;
+            }
+            else if (!string.IsNullOrEmpty(typeOfPlan))
+            {
+                query += " where TypeOfPlan = @TypeOfPlan" + typeOfPlan;
+            }
+
             using (var conn = new SqlConnection(_connectionString))
             {
                 return conn.Query<Plan>(query).ToList();
+
             }
         }
         public Plan GetByTypeOfPlan(string typeOfPlan)

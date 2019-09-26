@@ -9,6 +9,8 @@ namespace Project.Sevices.Models
     public class PlansEdicaoViewModel
     {
         [Required(ErrorMessage = "Campo obrigatório")]
+        public int IdPlan { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string SKU { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Name { get; set; }

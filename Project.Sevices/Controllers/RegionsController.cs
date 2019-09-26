@@ -19,7 +19,7 @@ namespace Project.Sevices.Controllers
 
         public RegionsController(IRegionBusiness business)
         {
-            business = _business;
+            _business = business;
         }
 
         [HttpPost]
@@ -70,7 +70,7 @@ namespace Project.Sevices.Controllers
         }
 
 
-        [HttpGet("{idregion}")]
+        [HttpGet("getby/{idregion}")]
         [Produces(typeof(RegionsConsultaViewModel))]
         public IActionResult GetById(int idregion)
         {
@@ -87,7 +87,7 @@ namespace Project.Sevices.Controllers
             }
         }
 
-        [HttpGet("{ddd}")]
+        [HttpGet("getby/{ddd}")]
         [Produces(typeof(RegionsConsultaViewModel))]
         public IActionResult GetByDDD(int ddd)
         {

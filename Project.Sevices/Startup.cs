@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +15,7 @@ using Project.BLL.Business;
 using Project.BLL.Contracts;
 using Project.DAL.Contracts;
 using Project.DAL.Repositories;
+using Project.Sevices.Mappings;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Project.Sevices
@@ -34,10 +36,22 @@ namespace Project.Sevices
             var connectionString = Configuration.GetConnectionString("Desafio");
 
             //mapeamento da injeção de dependência
-            services.AddTransient<IPlanBusiness, PlanBusiness>();
-            services.AddTransient<IRegionBusiness, RegionBusiness>();
-            services.AddTransient<IPlanRepository, PlanRepository>(map => new PlanRepository(connectionString));
-            services.AddTransient<IRegionRepository, RegionRepository>(map => new RegionRepository(connectionString));
+            //services.AddTransient<IPlanBusiness, PlanBusiness>();
+            //services.AddTransient<IRegionBusiness, RegionBusiness>();
+            //services.AddTransient<IPlanRepository, PlanRepository>(map => new PlanRepository(connectionString));
+            //services.AddTransient<IRegionRepository, RegionRepository>(map => new RegionRepository(connectionString));
+            services.AddScoped<IPlanBusiness, PlanBusiness>();
+            services.AddScoped<IRegionBusiness, RegionBusiness>();
+            services.AddScoped<IPlanRepository, PlanRepository>(map => new PlanRepository(connectionString));
+            services.AddScoped<IRegionRepository, RegionRepository>(map => new RegionRepository(connectionString));
+
+            //configurar o AutoMapper
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<EntityToViewModelMap>();
+                cfg.AddProfile<ViewModelToEntityMap>();
+            });
+
 
 
             services.AddMvc();

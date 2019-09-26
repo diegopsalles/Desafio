@@ -11,12 +11,11 @@ namespace Project.BLL.Contracts
         void Update(Plan plan);
         void Delete(int idPlan);
 
-        List<Plan> ListAll();
+        List<Plan> ListAll(string mobileOperator, string typeOfPlan);
         Plan GetByID(int IdPlan);
         Plan GetBySKU(string sku);
         Plan GetByTypeOfPlan(string typeOfPlan);
         Plan GetByMobileOperator(string mobileOperator);
-
-
+        
     }
 }
