@@ -12,7 +12,7 @@ namespace Project.BLL.Business
 
         public PlanBusiness(IPlanRepository repository)
         {
-            repository = _repository;
+            _repository = repository;
         }
 
         public void Delete(int idPlan)
