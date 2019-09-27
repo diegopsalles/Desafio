@@ -17,6 +17,6 @@ Obs.: Cada plano pode estar ou não disponível para um ou mais DDDs.
 5. Swagger
 
 ## Instalação
-Só realizar o git clone do projeto e ser feliz
+Só realizar o git clone do projeto
 
 ```git clone https://github.com/diegopsalles/Desafio.git```
