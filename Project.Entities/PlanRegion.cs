@@ -3,7 +3,8 @@
     public class PlanRegion
     {
         public int Id { get; set; }
-        public Plan Plan { get; set; }
-        public Region Region { get; set; }
+        public int IdPlan { get; set; }
+        public int IdRegion { get; set; }
+
     }
 }

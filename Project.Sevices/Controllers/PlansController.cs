@@ -5,7 +5,6 @@ using Project.Entities;
 using Project.Sevices.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Project.Sevices.Controllers
 {
@@ -38,7 +37,7 @@ namespace Project.Sevices.Controllers
                     return Ok("Plano cadastrado com sucesso!");
                 }
                 catch (Exception e)
-                    {
+                {
                     return StatusCode(500, e.Message);
                 }
             }
@@ -72,7 +71,7 @@ namespace Project.Sevices.Controllers
             }
         }
 
-        [HttpGet("{idplan}")]
+        [HttpGet("getby/{idplan}")]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetById(int idplan)
         {
@@ -80,23 +79,6 @@ namespace Project.Sevices.Controllers
             {
                 var planId = _business.GetByID(idplan);
                 var model = Mapper.Map<PlansConsultaViewModel>(planId);
-
-                return Ok(model);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
-        }
-
-        [HttpGet("getby/{mobileoperator}")]
-        [Produces(typeof(PlansConsultaViewModel))]
-        public IActionResult GetByMobileOperator(string mobileoperator)
-        {
-            try
-            {
-                var planMobileOperator = _business.GetByMobileOperator(mobileoperator);
-                var model = Mapper.Map<PlansConsultaViewModel>(planMobileOperator);
 
                 return Ok(model);
             }
@@ -123,9 +105,25 @@ namespace Project.Sevices.Controllers
             }
         }
 
+        [HttpGet("getby/{DDD}")]
+        [Produces(typeof(PlansConsultaViewModel))]
+        public IActionResult GetPlansByDDD(int DDD)
+        {
+            try
+            {
+                var listPlans = _business.ListPlanByDDD(DDD);
+                var returnListModel = Mapper.Map<List<PlansConsultaViewModel>>(listPlans);
+
+                return Ok(returnListModel);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
 
 
-        [HttpGet("sku/{sku}")]
+        [HttpGet("getby/{sku}")]
         [Produces(typeof(PlansConsultaViewModel))]
         public IActionResult GetBySku(string sku)
         {
@@ -139,23 +137,6 @@ namespace Project.Sevices.Controllers
             catch (Exception e)
             {
                 return StatusCode(500, e.Message);
-            }
-        }
-
-        [HttpGet("typeofplan/{typeofplan}")]
-        [Produces(typeof(PlansConsultaViewModel))]
-        public IActionResult GetByTypeOfPlan(string typeOfPlan)
-        {
-            try
-            {
-                var planType = _business.GetByTypeOfPlan(typeOfPlan);
-                var model = Mapper.Map<PlansConsultaViewModel>(planType);
-
-                return Ok(model);
-            }
-            catch (Exception e)
-            {
-               return StatusCode(500, e.Message);
             }
         }
 
