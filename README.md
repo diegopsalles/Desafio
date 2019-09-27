@@ -15,3 +15,8 @@ Obs.: Cada plano pode estar ou não disponível para um ou mais DDDs.
 3. AutoMapper 8.1.0
 4. DependencyInjection 2.1.1
 5. Swagger
+
+## Instalação
+Só realizar o git clone do projeto e ser feliz
+
+```git clone https://github.com/diegopsalles/Desafio.git```
