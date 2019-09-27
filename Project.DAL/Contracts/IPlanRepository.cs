@@ -12,7 +12,7 @@ namespace Project.DAL.Contracts
         List<Plan> ListAll(string mobileOperator, string typeOfPlan);
         Plan GetByID(int idPlan);
         Plan GetBySKU(string sku);
-        Plan GetByTypeOfPlan(string typeOfPlan);
-        Plan GetByMobileOperator(string mobileOperator);
+
+        List<Plan> GetPlansByDDD(int ddd);
     }
 }

@@ -25,19 +25,9 @@ namespace Project.BLL.Business
             return _repository.GetByID(IdPlan);
         }
 
-        public Plan GetByMobileOperator(string mobileOperator)
-        {
-            return _repository.GetByMobileOperator(mobileOperator);
-        }
-
         public Plan GetBySKU(string sku)
         {
             return _repository.GetBySKU(sku);
-        }
-
-        public Plan GetByTypeOfPlan(string typeOfPlan)
-        {
-            return _repository.GetByTypeOfPlan(typeOfPlan);
         }
 
         public void Insert(Plan plan)
@@ -48,6 +38,11 @@ namespace Project.BLL.Business
         public List<Plan> ListAll(string mobileOperator, string typeOfPlan)
         {
             return _repository.ListAll(mobileOperator, typeOfPlan);
+        }
+
+        public List<Plan> ListPlanByDDD(int ddd)
+        {
+            return _repository.GetPlansByDDD(ddd);
         }
 
         public void Update(Plan plan)

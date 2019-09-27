@@ -16,7 +16,7 @@ namespace Project.Sevices.Models
         public decimal PriceOfPlan { get; set; }
         public string TypeOfPlan { get; set; }
         public string MobileOperator { get; set; }
-        public List<Region> Region { get; set; }
+        public List<PlanRegion> Region { get; set; }
     }
 
 }
