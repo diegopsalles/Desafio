@@ -24,8 +24,8 @@ namespace Project.Entities
         {
             var planRegion = new PlanRegion
             {
-                Plan = this,
-                Region = region
+                IdPlan = IdPlan,
+                IdRegion = region.IdRegion
             };
             Regions.Add(planRegion);
 
